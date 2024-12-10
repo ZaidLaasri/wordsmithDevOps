@@ -1,6 +1,9 @@
 name: Build and Push Wordsmith Images
 
 on:
+  push :
+   branches :
+    - main
   pull_request:
     types: [labeled] # Déclenchement lorsque qu'un label est ajouté à une Pull Request
 
@@ -27,13 +30,13 @@ jobs:
 
       # 3. Builder les images
       - name: Build Wordsmith Web Image
-        run: docker build -t $DOCKER_REGISTRY/$IMAGE_NAME_WEB:latest ./web
+        run: docker build -t $DOCKER_REGISTRY/$IMAGE_NAME_WEB:webTaga ./web
 
       - name: Build Wordsmith Words Image
-        run: docker build -t $DOCKER_REGISTRY/$IMAGE_NAME_WORDS:latest ./words
+        run: docker build -t $DOCKER_REGISTRY/$IMAGE_NAME_WORDS:wordsTag ./words
 
       - name: Build Wordsmith DB Image
-        run: docker build -t $DOCKER_REGISTRY/$IMAGE_NAME_DB:latest ./db
+        run: docker build -t $DOCKER_REGISTRY/$IMAGE_NAME_DB:dbTag ./db
 
       # 4. Tagger les images avec trois tags
       - name: Tag and Push Images
