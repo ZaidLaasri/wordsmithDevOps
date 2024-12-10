@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       DOCKER_REGISTRY: zaidlaasri # Remplacez par votre nom d'utilisateur Docker Hub
-      IMAGE_NAME_WEB: wordsmith-web
-      IMAGE_NAME_WORDS: wordsmith-words
-      IMAGE_NAME_DB: wordsmith-db
+      IMAGE_NAME_WEB: wordsmith
+      IMAGE_NAME_WORDS: wordsmith
+      IMAGE_NAME_DB: wordsmith
 
     steps:
       # 1. Checkout le code source
