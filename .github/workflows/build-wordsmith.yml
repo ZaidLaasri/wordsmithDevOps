@@ -36,15 +36,16 @@ jobs:
         run: docker build -t $DOCKER_REGISTRY/$IMAGE_NAME_WORDS:wordsTag ./words
 
       - name: Build Wordsmith DB Image
-        run: docker build -t $DOCKER_REGISTRY/$IMAGE_NAME_DB:dbTag ./db
+        run: docker build -t $DOCKER_REGISTRY/$IMAGE_NAME_DB:dbTaga ./db
 
       # 4. Tagger les images avec trois tags
       - name: Tag and Push Images
         run: |
           for IMAGE in $IMAGE_NAME_WEB $IMAGE_NAME_WORDS $IMAGE_NAME_DB; do
-            docker tag $DOCKER_REGISTRY/$IMAGE:latest $DOCKER_REGISTRY/$IMAGE:dev
-            docker tag $DOCKER_REGISTRY/$IMAGE:latest $DOCKER_REGISTRY/$IMAGE:stable
-            docker push $DOCKER_REGISTRY/$IMAGE:latest
-            docker push $DOCKER_REGISTRY/$IMAGE:dev
-            docker push $DOCKER_REGISTRY/$IMAGE:stable
+            docker tag $DOCKER_REGISTRY/$IMAGE:webTaga $DOCKER_REGISTRY/$IMAGE:webTaga
+            docker tag $DOCKER_REGISTRY/$IMAGE:wordsTag $DOCKER_REGISTRY/$IMAGE:wordsTag
+            docker tag $DOCKER_REGISTRY/$IMAGE:dbTaga $DOCKER_REGISTRY/$IMAGE:dbTaga
+            docker push $DOCKER_REGISTRY/$IMAGE:webTaga
+            docker push $DOCKER_REGISTRY/$IMAGE:wordsTag
+            docker push $DOCKER_REGISTRY/$IMAGE:dbTaga
           done
